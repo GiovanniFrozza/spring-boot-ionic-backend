@@ -1,4 +1,4 @@
-package com.giovanniEstudo.cursoMC.domain;
+package com.giovanniEstudo.cursoMC.Entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
-public class Categoria implements Serializable {
+public class CategoriaEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -17,11 +17,11 @@ public class Categoria implements Serializable {
 
     private String nome;
 
-    public Categoria() {
+    public CategoriaEntity() {
 
     }
 
-    public Categoria(Integer id, String nome) {
+    public CategoriaEntity(Integer id, String nome) {
         //super();
         this.id = id;
         this.nome = nome;
