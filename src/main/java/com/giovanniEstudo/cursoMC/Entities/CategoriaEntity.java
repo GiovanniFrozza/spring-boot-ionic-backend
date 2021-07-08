@@ -1,10 +1,9 @@
 package com.giovanniEstudo.cursoMC.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class CategoriaEntity implements Serializable {
@@ -14,8 +13,10 @@ public class CategoriaEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
     private String nome;
+
+    @ManyToMany(mappedBy = "categorias")
+    private List<ProdutoEntity> produtos = new ArrayList<>();
 
     public CategoriaEntity() {
 
@@ -43,4 +44,11 @@ public class CategoriaEntity implements Serializable {
         this.nome = nome;
     }
 
+    public List<ProdutoEntity> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<ProdutoEntity> produtos) {
+        this.produtos = produtos;
+    }
 }
