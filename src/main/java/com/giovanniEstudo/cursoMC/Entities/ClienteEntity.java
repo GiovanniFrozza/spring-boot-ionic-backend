@@ -1,5 +1,6 @@
 package com.giovanniEstudo.cursoMC.Entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.giovanniEstudo.cursoMC.enums.TipoClienteEnum;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class ClienteEntity implements Serializable {
 
     private Integer tipoCliente;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "clienteEntity")
     private List<EnderecoEntity> enderecos = new ArrayList<>();
 

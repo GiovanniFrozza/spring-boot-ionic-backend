@@ -1,5 +1,7 @@
 package com.giovanniEstudo.cursoMC.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -21,6 +23,7 @@ public class EnderecoEntity implements Serializable {
 
     private String cep;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private ClienteEntity clienteEntity;
