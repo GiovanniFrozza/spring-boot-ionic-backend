@@ -1,9 +1,6 @@
 package com.giovanniEstudo.cursoMC.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -24,8 +21,12 @@ public class EnderecoEntity implements Serializable {
 
     private String cep;
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private ClienteEntity clienteEntity;
 
+    @ManyToOne
+    @JoinColumn(name = "cidade_id")
     private CidadeEntity cidadeEntity;
 
     public EnderecoEntity() {

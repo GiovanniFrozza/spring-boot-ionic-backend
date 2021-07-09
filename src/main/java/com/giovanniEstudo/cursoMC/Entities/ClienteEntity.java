@@ -25,8 +25,11 @@ public class ClienteEntity implements Serializable {
 
     private Integer tipoCliente;
 
+    @OneToMany(mappedBy = "clienteEntity")
     private List<EnderecoEntity> enderecos = new ArrayList<>();
 
+    @ElementCollection
+    @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
 
     public ClienteEntity(Integer id, String nome, String email, String cpfOuCnpj, TipoClienteEnum tipoCliente) {
