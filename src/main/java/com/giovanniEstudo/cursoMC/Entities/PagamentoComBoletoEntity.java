@@ -15,10 +15,10 @@ public class PagamentoComBoletoEntity extends PagamentoEntity {
 
     }
 
-    public PagamentoComBoletoEntity(Integer id, EstadoPagamentoEnum estadoPagamento, Date dataVencimento, Date dataPagamento) {
-        super(id, estadoPagamento);
-        this.dataPagamento = dataPagamento;
+    public PagamentoComBoletoEntity(Integer id, EstadoPagamentoEnum estadoPagamento, PedidoEntity pedido, Date dataVencimento, Date dataPagamento) {
+        super(id, estadoPagamento, pedido);
         this.dataVencimento = dataVencimento;
+        this.dataPagamento = dataPagamento;
     }
 
     public Date getDataVencimento() {

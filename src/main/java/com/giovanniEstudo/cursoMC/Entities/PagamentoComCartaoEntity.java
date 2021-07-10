@@ -13,8 +13,8 @@ public class PagamentoComCartaoEntity extends PagamentoEntity {
 
     }
 
-    public PagamentoComCartaoEntity(Integer id, EstadoPagamentoEnum estadoPagamento, Integer numeroDeParcelas) {
-        super(id, estadoPagamento);
+    public PagamentoComCartaoEntity(Integer id, EstadoPagamentoEnum estadoPagamento, PedidoEntity pedido, Integer numeroDeParcelas) {
+        super(id, estadoPagamento, pedido);
         this.numeroDeParcelas = numeroDeParcelas;
     }
 

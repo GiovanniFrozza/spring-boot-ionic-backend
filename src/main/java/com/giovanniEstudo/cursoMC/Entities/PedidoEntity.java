@@ -25,14 +25,17 @@ public class PedidoEntity implements Serializable {
     @JoinColumn(name = "endereco_de_entraga_id")
     private EnderecoEntity endereco;
 
-    public PedidoEntity(Integer id, Date instante) {
+    public PedidoEntity(Integer id, Date instante, ClienteEntity cliente, EnderecoEntity endereco) {
         this.id = id;
         this.instante = instante;
+        this.cliente = cliente;
+        this.endereco = endereco;
     }
 
     public PedidoEntity(){
 
     }
+
 
     public Integer getId() {
         return id;

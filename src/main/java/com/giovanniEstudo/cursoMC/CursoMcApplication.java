@@ -1,6 +1,7 @@
 package com.giovanniEstudo.cursoMC;
 
 import com.giovanniEstudo.cursoMC.Entities.*;
+import com.giovanniEstudo.cursoMC.enums.EstadoPagamentoEnum;
 import com.giovanniEstudo.cursoMC.enums.TipoClienteEnum;
 import com.giovanniEstudo.cursoMC.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -31,6 +32,13 @@ public class CursoMcApplication implements CommandLineRunner {
 
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+
+	@Autowired
+	private PedidoRepository pedidoRepository;
+
+	@Autowired
+	private PagamentoRepository pagamentoRepository;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursoMcApplication.class, args);
@@ -89,5 +97,22 @@ public class CursoMcApplication implements CommandLineRunner {
 
 		clienteRepository.save(cliente1);
 		enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2));
+
+		//Instanciando Pedido;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		PedidoEntity pedido1 = new PedidoEntity(null, sdf.parse("30/09/2017 10:32"), cliente1, endereco1);
+		PedidoEntity pedido2 = new PedidoEntity(null, sdf.parse("10/10/2017 19:37"), cliente1, endereco2);
+
+		PagamentoEntity pagamento1 = new PagamentoComCartaoEntity(null, EstadoPagamentoEnum.QUITADO, pedido1, 6);
+		pedido1.setPagamento(pagamento1);
+
+		PagamentoEntity pagamento2 = new PagamentoComBoletoEntity(null, EstadoPagamentoEnum.PENDENTE, pedido2, sdf.parse("20/10/2017 00:00"), null );
+		pedido2.setPagamento(pagamento2);
+
+		//cliente tem x pedidos -------- Adicionando na Lista relacionada
+		cliente1.getPedidos().addAll(Arrays.asList(pedido1, pedido2));
+
+		pedidoRepository.saveAll(Arrays.asList(pedido1, pedido2));
+		pagamentoRepository.saveAll(Arrays.asList(pagamento1, pagamento2));
 	}
 }
