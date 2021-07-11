@@ -27,7 +27,7 @@ public class PedidoEntity implements Serializable {
     @JoinColumn(name = "endereco_de_entraga_id")
     private EnderecoEntity endereco;
 
-
+    @OneToMany(mappedBy = "id.pedido")
     private Set<ItemPedidoEntity> itens = new HashSet<>();
 
     public PedidoEntity(Integer id, Date instante, ClienteEntity cliente, EnderecoEntity endereco) {
