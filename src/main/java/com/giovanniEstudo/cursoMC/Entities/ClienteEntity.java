@@ -1,6 +1,7 @@
 package com.giovanniEstudo.cursoMC.Entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.giovanniEstudo.cursoMC.enums.TipoClienteEnum;
 
@@ -27,7 +28,6 @@ public class ClienteEntity implements Serializable {
 
     private Integer tipoCliente;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "clienteEntity")
     private List<EnderecoEntity> enderecos = new ArrayList<>();
 
@@ -35,7 +35,7 @@ public class ClienteEntity implements Serializable {
     @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<PedidoEntity> pedidos = new ArrayList<>();
 

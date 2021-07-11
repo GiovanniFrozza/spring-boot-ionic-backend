@@ -22,7 +22,7 @@ public class ProdutoEntity implements Serializable {
 
     private double preco;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToMany
     @JoinTable( name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id") )
     private List<CategoriaEntity> categorias = new ArrayList<>();
