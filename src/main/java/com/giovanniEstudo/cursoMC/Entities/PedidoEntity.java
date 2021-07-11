@@ -3,6 +3,8 @@ package com.giovanniEstudo.cursoMC.Entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class PedidoEntity implements Serializable {
@@ -24,6 +26,9 @@ public class PedidoEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "endereco_de_entraga_id")
     private EnderecoEntity endereco;
+
+
+    private Set<ItemPedidoEntity> itens = new HashSet<>();
 
     public PedidoEntity(Integer id, Date instante, ClienteEntity cliente, EnderecoEntity endereco) {
         this.id = id;
@@ -75,5 +80,13 @@ public class PedidoEntity implements Serializable {
 
     public void setEndereco(EnderecoEntity endereco) {
         this.endereco = endereco;
+    }
+
+    public Set<ItemPedidoEntity> getItens() {
+        return itens;
+    }
+
+    public void setItens(Set<ItemPedidoEntity> itens) {
+        this.itens = itens;
     }
 }
