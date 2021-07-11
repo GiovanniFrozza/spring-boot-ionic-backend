@@ -1,7 +1,7 @@
 package com.giovanniEstudo.cursoMC.Controllers;
 
-import com.giovanniEstudo.cursoMC.Entities.ClienteEntity;
-import com.giovanniEstudo.cursoMC.Services.ClienteService;
+import com.giovanniEstudo.cursoMC.Entities.PedidoEntity;
+import com.giovanniEstudo.cursoMC.Services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/clientes")
-public class ClienteController {
+@RequestMapping(value = "/pedidos")
+public class PedidoController {
 
     @Autowired
-    private ClienteService service;
+    private PedidoService service;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Optional<ClienteEntity> findById(@PathVariable Integer id) {
+    public Optional<PedidoEntity> findById(@PathVariable Integer id) {
         return this.service.findById(id);
     }
 

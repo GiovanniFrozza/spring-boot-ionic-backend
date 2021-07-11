@@ -1,5 +1,6 @@
 package com.giovanniEstudo.cursoMC.Entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.giovanniEstudo.cursoMC.enums.EstadoPagamentoEnum;
 
 import javax.persistence.Entity;
@@ -8,7 +9,10 @@ import java.util.Date;
 @Entity
 public class PagamentoComBoletoEntity extends PagamentoEntity {
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataVencimento;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataPagamento;
 
     public PagamentoComBoletoEntity(){

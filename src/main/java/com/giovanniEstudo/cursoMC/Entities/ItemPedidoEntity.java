@@ -1,5 +1,8 @@
 package com.giovanniEstudo.cursoMC.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -7,6 +10,7 @@ import java.io.Serializable;
 public class ItemPedidoEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @JsonIgnore
     @EmbeddedId
     private ItemPedidoPK id = new ItemPedidoPK();
 
@@ -29,6 +33,7 @@ public class ItemPedidoEntity implements Serializable {
         this.preco = preco;
     }
 
+    @JsonIgnore
     public PedidoEntity getPedido() {
         return id.getPedido();
     }
