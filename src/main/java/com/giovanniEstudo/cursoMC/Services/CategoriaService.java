@@ -22,4 +22,8 @@ public class CategoriaService {
         return categoria;
     }
 
+    public CategoriaEntity insert(CategoriaEntity categoriaEntity) {
+        return repository.save(categoriaEntity);
+    }
+
 }
