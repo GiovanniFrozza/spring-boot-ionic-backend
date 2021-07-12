@@ -23,7 +23,16 @@ public class CategoriaService {
     }
 
     public CategoriaEntity insert(CategoriaEntity categoriaEntity) {
+        categoriaEntity.setId(null);
         return repository.save(categoriaEntity);
+    }
+
+    public CategoriaEntity update(CategoriaEntity categoriaEntity) {
+        return repository.save(categoriaEntity);
+    }
+
+    public void deleteById(Integer id) {
+        repository.deleteById(id);
     }
 
 }
