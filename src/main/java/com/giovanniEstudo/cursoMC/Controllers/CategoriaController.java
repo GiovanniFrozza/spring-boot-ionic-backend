@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -29,15 +30,17 @@ public class CategoriaController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> insert(@RequestBody CategoriaEntity categoriaEntity) {
-        categoriaEntity = service.insert(categoriaEntity);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoriaEntity.getId()).toUri();
+    public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO categoriaDTO) {
+        CategoriaEntity categoriaEntity = this.service.fromDTO(categoriaDTO);
+        categoriaEntity = this.service.insert(categoriaEntity);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoriaDTO.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> update(@RequestBody CategoriaEntity categoriaEntity, @PathVariable Integer id) {
-        categoriaEntity = service.update(categoriaEntity);
+    public ResponseEntity<Void> update(@Valid @RequestBody CategoriaDTO categoriaDTO, @PathVariable Integer id) {
+        CategoriaEntity categoria = this.service.fromDTO(categoriaDTO);
+        categoria = service.update(categoria);
         return ResponseEntity.noContent().build();
     }
 

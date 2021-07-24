@@ -62,6 +62,10 @@ public class CategoriaService {
         return listaCategorias;
     }
 
+    public CategoriaEntity fromDTO(CategoriaDTO categoriaDTO) {
+        return new CategoriaEntity(categoriaDTO.getId(), categoriaDTO.getNome());
+    }
+
     /*
     public Page<CategoriaEntity> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
