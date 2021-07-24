@@ -7,6 +7,9 @@ import com.giovanniEstudo.cursoMC.Exception.Exceptions.ObjetoNaoEncontradoExcept
 import com.giovanniEstudo.cursoMC.repositories.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -58,5 +61,12 @@ public class CategoriaService {
         }
         return listaCategorias;
     }
+
+    /*
+    public Page<CategoriaEntity> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+        return repository.findAll(pageRequest);
+    }
+     */
 
 }

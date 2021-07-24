@@ -52,6 +52,11 @@ public class CursoMcApplication implements CommandLineRunner {
 		//Instanciando categorias
 		CategoriaEntity categoria1 = new CategoriaEntity(null, "Informatica");
 		CategoriaEntity categoria2 = new CategoriaEntity(null, "Escritorio");
+		CategoriaEntity categoria3 = new CategoriaEntity(null, "Cama mesa e banho");
+		CategoriaEntity categoria4 = new CategoriaEntity(null, "Eletronico");
+		CategoriaEntity categoria5 = new CategoriaEntity(null, "Jardinagem");
+		CategoriaEntity categoria6 = new CategoriaEntity(null, "Decoracao");
+		CategoriaEntity categoria7 = new CategoriaEntity(null, "Perfumaria");
 
 		//Instanciando produtos
 		ProdutoEntity produto1 = new ProdutoEntity(null, "Computador", 2000.00);
@@ -67,7 +72,7 @@ public class CursoMcApplication implements CommandLineRunner {
 		produto2.getCategorias().addAll(Arrays.asList(categoria1, categoria2));
 		produto3.getCategorias().add(categoria1);
 
-		categoriaRepository.saveAll(Arrays.asList(categoria1, categoria2));
+		categoriaRepository.saveAll(Arrays.asList(categoria1, categoria2, categoria3, categoria4, categoria5, categoria6, categoria7));
 		produtoRepository.saveAll(Arrays.asList(produto1, produto2, produto3));
 
 		//Instanciando estados

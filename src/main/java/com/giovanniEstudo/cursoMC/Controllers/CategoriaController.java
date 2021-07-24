@@ -4,6 +4,8 @@ import com.giovanniEstudo.cursoMC.DTO.CategoriaDTO;
 import com.giovanniEstudo.cursoMC.Services.CategoriaService;
 import com.giovanniEstudo.cursoMC.Entities.CategoriaEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -45,11 +47,21 @@ public class CategoriaController {
         return ResponseEntity.noContent().build();
     }
 
-    @RequestMapping(value = "/retornaTodas", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public List<CategoriaDTO> findAll() {
         return this.service.findAll();
     }
 
+    /*
+    @RequestMapping(value = "/retornaTodas", method = RequestMethod.GET)
+    public Page<CategoriaEntity> findPage(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "linesPerPage", defaultValue = "24")Integer linesPerPage,
+            @RequestParam(value = "orderBy", defaultValue = "nome")String orderBy,
+            @RequestParam(value = "direction", defaultValue = "ASC")String direction ) {
+        return this.service.findPage(page, linesPerPage, orderBy, direction);
+    }
+     */
 
 }
 
