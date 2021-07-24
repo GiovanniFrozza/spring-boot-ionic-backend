@@ -1,9 +1,11 @@
 package com.giovanniEstudo.cursoMC.Services;
 
 import com.giovanniEstudo.cursoMC.Entities.CategoriaEntity;
+import com.giovanniEstudo.cursoMC.Exception.Exceptions.DataIntegrityException;
 import com.giovanniEstudo.cursoMC.Exception.Exceptions.ObjetoNaoEncontradoException;
 import com.giovanniEstudo.cursoMC.repositories.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -32,7 +34,13 @@ public class CategoriaService {
     }
 
     public void deleteById(Integer id) {
-        repository.deleteById(id);
+        findById(id);
+        try {
+            repository.deleteById(id);
+        }
+        catch( DataIntegrityViolationException e ) {
+            throw new DataIntegrityException();
+        }
     }
 
 }
