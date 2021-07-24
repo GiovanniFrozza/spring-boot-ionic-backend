@@ -1,5 +1,6 @@
 package com.giovanniEstudo.cursoMC.Controllers;
 
+import com.giovanniEstudo.cursoMC.DTO.CategoriaDTO;
 import com.giovanniEstudo.cursoMC.Services.CategoriaService;
 import com.giovanniEstudo.cursoMC.Entities.CategoriaEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -41,6 +44,13 @@ public class CategoriaController {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @RequestMapping(value = "/retornaTodas", method = RequestMethod.GET)
+    public List<CategoriaDTO> findAll() {
+        return this.service.findAll();
+    }
+
+
 }
 
 

@@ -1,5 +1,6 @@
 package com.giovanniEstudo.cursoMC.Services;
 
+import com.giovanniEstudo.cursoMC.DTO.CategoriaDTO;
 import com.giovanniEstudo.cursoMC.Entities.CategoriaEntity;
 import com.giovanniEstudo.cursoMC.Exception.Exceptions.DataIntegrityException;
 import com.giovanniEstudo.cursoMC.Exception.Exceptions.ObjetoNaoEncontradoException;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -41,6 +44,19 @@ public class CategoriaService {
         catch( DataIntegrityViolationException e ) {
             throw new DataIntegrityException();
         }
+    }
+
+    public List<CategoriaDTO> findAll() {
+        List<CategoriaEntity> categorias = (List<CategoriaEntity>) this.repository.findAll();
+        return this.converteLista(categorias);
+    }
+
+    private List<CategoriaDTO> converteLista( List<CategoriaEntity> categorias ) {
+        ArrayList<CategoriaDTO> listaCategorias = new ArrayList<>();
+        for(CategoriaEntity categoria : categorias ) {
+            listaCategorias.add( new CategoriaDTO( categoria ) );
+        }
+        return listaCategorias;
     }
 
 }
