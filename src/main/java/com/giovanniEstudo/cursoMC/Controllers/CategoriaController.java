@@ -56,6 +56,7 @@ public class CategoriaController {
     }
 
     /*
+    //url da pagina
     @RequestMapping(value = "/retornaTodas", method = RequestMethod.GET)
     public Page<CategoriaEntity> findPage(
             @RequestParam(value = "page", defaultValue = "0") Integer page,

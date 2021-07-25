@@ -3,7 +3,9 @@ package com.giovanniEstudo.cursoMC.Services;
 import com.giovanniEstudo.cursoMC.DTO.CategoriaDTO;
 import com.giovanniEstudo.cursoMC.Entities.CategoriaEntity;
 import com.giovanniEstudo.cursoMC.Exception.Exceptions.DataIntegrityException;
+import com.giovanniEstudo.cursoMC.Exception.Exceptions.MethodArgumentNotValidException;
 import com.giovanniEstudo.cursoMC.Exception.Exceptions.ObjetoNaoEncontradoException;
+import com.giovanniEstudo.cursoMC.Exception.handlers.MethodArgumentNotValidHandler;
 import com.giovanniEstudo.cursoMC.repositories.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -32,7 +34,12 @@ public class CategoriaService {
 
     public CategoriaEntity insert(CategoriaEntity categoriaEntity) {
         categoriaEntity.setId(null);
-        return repository.save(categoriaEntity);
+        try {
+            return repository.save(categoriaEntity);
+        }
+        catch ( MethodArgumentNotValidException e ) {
+            throw new MethodArgumentNotValidException();
+        }
     }
 
     public CategoriaEntity update(CategoriaEntity categoriaEntity) {
